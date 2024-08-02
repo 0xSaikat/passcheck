@@ -27,7 +27,7 @@
     ```bash
    python passcheck.py
 ## Example
-<img align="center" alt="Coding" width="400" src="https://github.com/0xSaikat/passcheck/blob/main/example.png">
+<img align="center" alt="Coding" width="400" src="https://github.com/0xSaikat/passcheck/blob/main/example1.png">
 
 ## License
 This project is licensed under the MIT [LICENSE](./LICENSE) See the LICENSE file for details.
