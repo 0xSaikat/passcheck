@@ -1,8 +1,25 @@
 import re
 from colorama import Fore, Style, init
 import pyfiglet
+import requests
+import os
 
 init(autoreset=True)
+
+def download_rockyou_file():
+    url = 'https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt'
+    response = requests.get(url)
+    with open('rockyou.txt', 'wb') as file:
+        file.write(response.content)
+
+def is_password_in_rockyou(password):
+    if not os.path.isfile('rockyou.txt'):
+        download_rockyou_file()
+    with open('rockyou.txt', 'r', encoding='latin-1') as file:
+        for line in file:
+            if password == line.strip():
+                return True
+    return False
 
 def password_strength(password):
     length = len(password)
@@ -69,16 +86,13 @@ def main():
     tool_name = "PassCheck"
     ascii_art = pyfiglet.figlet_format(tool_name, font="drpepper")
     colored_ascii = f"{Fore.BLUE}{Style.BRIGHT}{ascii_art}"
-    print(colored_ascii)
-
-    linkedin_saikat = "https://www.linkedin.com/in/0xsaikat/"
-    linkedin_bms = "https://www.linkedin.com/company/brainwave-matrix-solutions"
+    print(colored_ascii + Fore.RED + " V-2.0\n")
     
-    link_saikat = f"\033]8;;{linkedin_saikat}\033\\@0xSaikat\033]8;;\033\\"
-    link_bms = f"\033]8;;{linkedin_bms}\033\\Brainwave Matrix Solutions\033]8;;\033\\"
+    hackbit_website = "https://hackbit.org/"
+    link_hackbit = f"\033]8;;{hackbit_website}\033\\hackbit.org\033]8;;\033\\"
     
-    print(f"{Fore.RED}V-1.0\n")
-    print(f"{Fore.GREEN}Created by {Style.BRIGHT}{link_saikat}{Style.RESET_ALL}{Fore.GREEN} during an internship at {Style.BRIGHT}{link_bms}{Style.RESET_ALL}{Fore.GREEN}.\n")
+    
+    print(f"{Fore.GREEN}Created by {Style.BRIGHT}@0xSaikat{Style.RESET_ALL}{Fore.GREEN} and an official tool of {link_hackbit}.\n")
     
     while True:
         user_password = input(Fore.GREEN + "🔑 Enter your password to check its strength (or press 'q' to quit): " + Style.RESET_ALL)
@@ -87,23 +101,39 @@ def main():
             print(Fore.CYAN + "Goodbye! 👋")
             break
         
-        print()  
-        
-        strength, suggestions = password_strength(user_password)
-        print(strength + "\n")  
-        
-        if suggestions:
-            print("Suggestions to improve your password:")
+        print()
+
+        if is_password_in_rockyou(user_password):
+            print(Fore.RED + "[+] " + Style.RESET_ALL + "Your password is weak and exposed on the internet...!")
+            secure_choice = input(Fore.RED + "[+] " + Style.RESET_ALL + "Do you want to secure your password and make it strong (yes/no)? " + Style.RESET_ALL)
+            if secure_choice.lower() == 'yes':
+                print("\n🔸 Use a mix of uppercase and lowercase letters.")
+                print("🔸 Include at least one digit.")
+                print("🔸 Add special characters like !, @, #, $, etc.")
+                print("🔸 Make your password at least 12 characters long.")
+                print("🔸 Avoid using common words or easily guessable information.")
+                print("🔸 Avoid using sequences of the same character.\n")
+            else:
+                print(Fore.CYAN + "Goodbye! 👋")
+                break
+        else:
+            strength, suggestions = password_strength(user_password)
+            print(Fore.RED + "[+] " + Style.RESET_ALL + "Your password is safe...!")
+            print(strength + "\n")
+            print(Fore.RED + "[+] " + Style.RESET_ALL + "Here are some recommendations to make a good password:")
             for suggestion in suggestions:
                 print(suggestion)
-        else:
-            print(Fore.GREEN + "✅ Your password is strong enough.")
-        
-        print()  
+            secure_choice = input(Fore.RED + "[+] " + Style.RESET_ALL + "Do you want to make the password more strong (yes/no)? " + Style.RESET_ALL)
+            if secure_choice.lower() == 'yes':
+                print("\n🔸 Use a mix of uppercase and lowercase letters.")
+                print("🔸 Include at least one digit.")
+                print("🔸 Add special characters like !, @, #, $, etc.")
+                print("🔸 Make your password at least 12 characters long.")
+                print("🔸 Avoid using common words or easily guessable information.")
+                print("🔸 Avoid using sequences of the same character.\n")
+            else:
+                print(Fore.CYAN + "Goodbye! 👋")
+                break
 
 if __name__ == "__main__":
     main()
-
-
-
-
