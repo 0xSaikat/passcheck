@@ -85,8 +85,7 @@ def password_strength(password):
 def main():
     tool_name = "PassCheck"
     ascii_art = pyfiglet.figlet_format(tool_name, font="drpepper")
-    colored_ascii = f"{Fore.BLUE}{Style.BRIGHT}{ascii_art}"
-    print(colored_ascii + Fore.RED + " V-2.0\n")
+    print(ascii_art + Fore.RED + " V-2.0\n")
     
     linkedin_saikat = "https://www.linkedin.com/in/0xsaikat/"
     hackbit_url = "https://hackbit.org"
