@@ -1,5 +1,7 @@
 # PassCheck
 
+![logo](https://github.com/0xSaikat/passcheck/blob/main/passcheck_cover.png)
+
 ## Overview
 
 PassCheck is a Python tool designed to evaluate the strength of passwords. It provides color-coded feedback and emoji enhancements to help users create secure passwords in an engaging way.
