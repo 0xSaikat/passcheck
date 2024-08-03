@@ -88,11 +88,13 @@ def main():
     colored_ascii = f"{Fore.BLUE}{Style.BRIGHT}{ascii_art}"
     print(colored_ascii + Fore.RED + " V-2.0\n")
     
-    hackbit_website = "https://hackbit.org/"
-    link_hackbit = f"\033]8;;{hackbit_website}\033\\hackbit.org\033]8;;\033\\"
+    linkedin_saikat = "https://www.linkedin.com/in/0xsaikat/"
+    hackbit_url = "https://hackbit.org"
     
+    link_saikat = f"\033]8;;{linkedin_saikat}\033\\@0xSaikat\033]8;;\033\\"
+    link_hackbit = f"\033]8;;{hackbit_url}\033\\hackbit.org\033]8;;\033\\"
     
-    print(f"{Fore.GREEN}Created by {Style.BRIGHT}@0xSaikat{Style.RESET_ALL}{Fore.GREEN} and an official tool of {link_hackbit}.\n")
+    print(f"{Fore.GREEN}Created by {Style.BRIGHT}{link_saikat}{Style.RESET_ALL}{Fore.GREEN} and an official tool of {Style.BRIGHT}{link_hackbit}{Style.RESET_ALL}{Fore.GREEN}.\n")
     
     while True:
         user_password = input(Fore.GREEN + "🔑 Enter your password to check its strength (or press 'q' to quit): " + Style.RESET_ALL)
